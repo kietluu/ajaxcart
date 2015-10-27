@@ -1,0 +1,101 @@
+<script type="text/javascript">
+    //<![CDATA[
+    var productAddToCartForm = new VarienForm('product_addtocart_form');
+    productAddToCartForm.submit = function(button, url) {
+        var obj = document.getElementById('qty');
+        if(obj){
+            if(parseInt(obj.value)<1){
+                alert('Please specify Quantity');
+                return false;
+            }
+        }
+
+        if (this.validator.validate()) {
+            var form = this.form;
+            var oldUrl = form.action;
+
+            if (url) {
+                form.action = url;
+            }
+            if(!url){
+                url = jQuery('#product_addtocart_form').attr('action');
+            }
+            url = url.replace('checkout/cart','ajaxcarts/index');
+            var data = jQuery('#product_addtocart_form').serialize();
+            showProcessing();
+            var e = null;
+            try {
+                jQuery.ajax({
+                    url:url,
+                    dataType:'json',
+                    type:'post',
+                    data:data,
+                    success: function(data){
+                        hideProcessing();
+                        setAjax(data);
+                    },
+                    error: function(jqXHR,textStatus,errorThrown ){
+                        console.log('jqXHR:');
+                        console.log(jqXHR);
+                        console.log('textStatus:' + textStatus);
+                        console.log('errorThrown:' + errorThrown);
+                    }
+                });
+            } catch (e) {
+            }
+            this.form.action = oldUrl;
+            if (e) {
+                throw e;
+            }
+
+            if (button && button != 'undefined') {
+                button.disabled = true;
+            }
+        }
+    }.bind(productAddToCartForm);
+
+    function submit() {
+        alert("ok");
+        jQuery('.btn-cart').bind('click', function () {
+            document.forms.submit();
+        });
+    }
+
+    productAddToCartForm.submitLight = function(button, url){
+        if(this.validator) {
+            var nv = Validation.methods;
+            delete Validation.methods['required-entry'];
+            delete Validation.methods['validate-one-required'];
+            delete Validation.methods['validate-one-required-by-name'];
+            // Remove custom datetime validators
+            for (var methodName in Validation.methods) {
+                if (methodName.match(/^validate-datetime-.*/i)) {
+                    delete Validation.methods[methodName];
+                }
+            }
+
+            if (this.validator.validate()) {
+                if (url) {
+                    this.form.action = url;
+                }
+                this.form.submit();
+            }
+            Object.extend(Validation.methods, nv);
+        }
+    }.bind(productAddToCartForm);
+
+    function setAjax(data) {
+        if (data.status == 'ERROR') {
+            alert(data.message);
+        } else {
+
+            if (jQuery('.header-minicart .count')) {
+                jQuery('.header-minicart .count').text(data.countCart);
+                jQuery('.header-minicart .count').show();
+            }
+            jQuery('#choice').show();
+            jQuery('#ajaxcart').show();
+        }
+    }
+    //]]>
+</script>

@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<config>
+    <tabs>
+        <ajaxcart_tab translate="label">
+            <label>BC Ajaxcart</label>
+            <sort_order>100</sort_order>
+        </ajaxcart_tab>
+    </tabs>
+    <sections>
+        <ajaxcart translate="label">
+            <label>Ajaxcart</label>
+            <sort_order>200</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <tab>ajaxcart_tab</tab>
+            <groups>
+                <all_settings translate="label">
+                    <label>Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <catalog_list_show translate="label">
+                            <label>Show on Product list page</label>
+                            <comment>Enable AjaxCart on product list page</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </catalog_list_show>
+                        <catalog_view_show translate="label">
+                            <label>Show on Product view page</label>
+                            <comment>Enable AjaxCart on product view page</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </catalog_view_show>
+                        <choice_product_info translate="label">
+                            <label>Show product info</label>
+                            <comment>Enable showing product info after adding to cart</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </choice_product_info>
+                        <show_pop_up_after_add translate="label">
+                            <label>Show popup window</label>
+                            <comment>Enable or Disable popup window after adding to cart</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </show_pop_up_after_add>
+                    </fields>
+                </all_settings>
+            </groups>
+        </ajaxcart>
+    </sections>
+</config>

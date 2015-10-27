@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <BC_Ajaxcart>
+            <active>true</active>
+            <codePool>local</codePool>
+        </BC_Ajaxcart>
+    </modules>
+</config>
